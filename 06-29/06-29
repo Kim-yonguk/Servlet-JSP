@@ -1,2 +1,48 @@
 06-29 Servlet&JSP Study
 
+
+
+서블릿을 만드는 이유는 클라이언트에 서비스 하기 위함임.
+
+웹 애플리케이션 실행에 관한 환경설정 파일은 web.xml 이며 위치는 /WEB-INF 이다.
+
+웹애플리케이션에서 실행되는 클래스 파일들은 /WEB-INF/classes 또는 /WEB-INF/lib에 jar형태로 이썽야만 애플리케이션 서버들이 자동으로 인식
+
+서블릿은 웹브라우저에서 요청하여 실행할수있는 자바프로그램이다.
+
+서블릿은 반드시 HttpSevlet , GenericServlet,Servlet 중 하나를 상속받아야함.
+
+웹애플리케이션의 /WEB-INF 디렉터리는 클라이언트가 직접적으로 접근할수없다.
+
+
+servlet 태그는 httpservlet 을 상속받고있는 클래스를 web.xml 에 등록 할때 사용
+
+servlet 태그를 사용하면 반드시 하위에 servlet-name과 servlet-class 태그를 가져야한다.
+
+servlet-name 태그는 등록하는 서블릿의 이름을 부여함, 실제존재하는 이름이 아닌 개발자가 지정하는 이름
+==>서블릿이름으로 지정한 이후에는 클래스 이름을 사용하면 안됩니다.
+
+servlet-class 태그는 등록하는 서블릿의 실제 클래스 이름을 지정합니다. 
+
+
+
+
+servlet-mapping 태그는 web.xml에서 servlet태그로 등록한 서블릿을 실헹요청할때 사용할 uri을 지정하기 위해 사용
+=>servlet 태그를 사용했을때만 부가적으로 사용할수 있고 servlet으로 등록된 서블릿이 아니면 사용불가.
+
+servlet-name태그는 실행할 서블릿 이름을 지정, 이떄 지정하는 이름은 반드시 servlet태그에서 등록한 서블릿 이름으로 지정해야함
+
+url-pattern 태그는 서블릿을 실행할때 사용할 url 지정
+
+
+==이러한 방식은 여러개의 서블릿을 태그로 등록하니까 전체적인관리가쉬움!
+
+
+
+어노테이션을 통한 접근==> 위 방식보다 유지보수성이 떨어진다.
+
+import javax.servlet.annotation.WebServlet;
+
+@WebServlet("/hello2") 이렇게하면 생략할수있음(그전꺼는 중복이니까 주석처리)
+
+클라이언트의 요청방식에 따라 서블릿을 실행하고자 할때 HttpServlet의 service()를 이용하여 doGet,doPost를 재정의한다.
