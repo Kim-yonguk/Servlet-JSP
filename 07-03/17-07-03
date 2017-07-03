@@ -1,0 +1,33 @@
+17-07-03
+
+		out.print("Request Schema : " + req.getScheme() + "<br/>"); //서비스 요청시 사용한 프로토콜 이름 반환
+		out.print("Server Name : " + req.getServerName() + "<br/>"); //서버의 호스트이름 반환
+		out.print("Server Address : " + req.getLocalAddr() + "<br/>"); //클라이언트로부터 서비스를 요청받은 서버의 ip주소 반환
+		out.print("Server Port : " + req.getServerPort() + "<br/>"); //클라이언트의 서비스를 요청받아 처리하는 서버의 포트번호 반환
+		out.print("Client Address : " + req.getRemoteAddr() + "<br/>"); //요청한 클라이언트의 ip주소 반환
+		out.print("Client Host : " + req.getRemoteHost() + "<br/>");	//서비스를 요청한 클라이언트의 호스트 이름을 반환
+		out.print("Client Port : " + req.getRemotePort() + "<br/>");	//서비스를 요청한 클라이언트의 포트번호
+
+		out.print("Request URI : " + req.getRequestURI() + "<br/>");	//클라이언트가 요청한 문서정보반환
+		out.print("Request URL : " + req.getRequestURL() + "<br/>");	//클라이언트가 요청한 문서의 전체정보,url반환
+		out.print("Context Path : " + req.getContextPath() + "<br/>");	//웹애플리케이션의 경로정보 반환
+		out.print("Request Protocol : " + req.getProtocol() + "<br/>");	//서비스를 처리하면서 사용되는 프로토콜의 구체적인 정보 반환
+		out.print("Servlet Path : " + req.getServletPath() + "<br/>");	//디렉터리 / 를 기준으로 서블릿의 경로반환
+
+
+		Enumeration<String> em=req.getHeaderNames();	//req.getHeaderNames는 요청정보의 헤더안에있는 정보중 헤더이름들만
+		 모아서 enumeration 객체에 담아서 반환,반환된 값의 시작주소를 em변수에 저장
+		>>> Enumeration 객체는 java.util에 있음, 커서개념으로 움직임 
+
+
+		while(em.hasMoreElements()){
+			String s=em.nextElement();
+			out.println(s+" : "+req.getHeader(s) + "<br/>");
+		}
+
+		em.hasMoreElements()는 em이 가리키는 Enumeration 객체의 커서 다음에 데이터가 있는지 없는지를 판단하여 
+		있으면 true 없으면 false를 반환, 커서가 맨마지막이면 false반환후 반복문 빠져나옴
+		nextElement는 커서의 다음요소를 반환하고 커서를 다음요소로 이동시킴.
+
+
+iterator , Enumeration 은 요소 접근시에 커서를 이용
